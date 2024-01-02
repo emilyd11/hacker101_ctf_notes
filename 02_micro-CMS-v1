@@ -1,0 +1,22 @@
+we find ourselves at a website where each page is made from markdown
+
+FLAG 1 
+1) notice that the URL in the address bar corresponds to if we are editing or reading the page
+2) there are pages /page/1, /page/2, and when we create a new page, /page/8
+3) try the numbers in between these
+4) /page/5 shows FORBIDDEN
+5) /edit/page/5 shows the flag
+
+FLAG 2
+1) we see that we can't achieve XSS by writing `<script>alert("Hi");</script>` in the body of the input field bc in the HTML it is replaced by "scrubbed"
+2) so instead we can put `<div onclick="alert('hi')">Click me</div>`. when we submit this as the form and click the text, it shows an alert.
+3) check the page source to see the flag is now present within the div tag
+
+FLAG 3
+1) check for SQL injection by adding a single quote ' at the end of the URL /page/edit/1'
+2) I had to look up this answer bc I had tested it but with /page/1' which did not yield the flag
+
+FLAG 4
+this one I also had to look up bc it was a stored XSS and I didn't notice the alert happening!
+1) edit the title in CREATE PAGE and put in `<script>alert("hello");</script>`
+2) the stored XSS vuln is reflected only when you click away and go back to the home page, when the title is displayed on the home page!

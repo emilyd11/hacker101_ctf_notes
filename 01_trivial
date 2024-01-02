@@ -1,0 +1,2 @@
+- View Page Source: we see that in the html code there is a background image with url "background.png"
+- add "/background.png" to the URL in address bar -> takes us to a page with the flag 
